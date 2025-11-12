@@ -1,0 +1,76 @@
+## Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+eggs/
+parts/
+bin/
+var/
+sdist/
+develop-eggs/
+*.egg-info/
+installdir/
+pip-wheel-metadata/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+.tox/
+*.cover
+*.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+
+# Virtualenv
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pyenv
+.python-version
+
+# SQLite
+/db.sqlite3
+/db.sqlite3-journal
+
+# Django media
+/media/
+
+# Django staticfiles (collected) - if you collect static to a folder
+/staticfiles/
+
+# Local settings
+*.local
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Python bytecode compiled files
+*.pyc
+
+# Secrets
+.env.*

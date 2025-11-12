@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>National Institute of Engineering</title>
+  <link rel="stylesheet" href="{% static 'student/css/styles.css' %}">
+</head>
+<body>
+  <main class="page home-hero">
+    <div class="hero-card">
+      <div class="hero-media">
+        <img src="{% static 'student/img/institute_logo.png' %}" alt="Institute logo" class="hero-logo">
+      </div>
+      <h1 class="hero-title">National Institute of Engineering</h1>
+      <p class="hero-sub">Where curiosity meets craft. Explore students, projects, and more.</p>
+      <a class="hero-cta" href="{% url 'student:list' %}">Explore Students</a>
+    </div>
+  </main>
+</body>
+</html>

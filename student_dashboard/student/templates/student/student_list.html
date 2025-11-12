@@ -1,0 +1,92 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Students — Dashboard</title>
+  <link rel="stylesheet" href="{% static 'student/css/styles.css' %}">
+</head>
+<body>
+  <main class="page" aria-labelledby="page-title">
+    <header class="page-header">
+      <div>
+        <h1 id="page-title">Student Directory</h1>
+        <p class="subtitle">A liquid-glass UI with vibrant accents — hover cards, details modal and smooth animations</p>
+      </div>
+      <div class="controls">
+        <form id="filters" method="get">
+          <input id="search" name="q" value="{{ q }}" placeholder="Search students by name, email or insta" aria-label="Search students" />
+          <select name="dept" id="dept">
+            <option value="">All departments</option>
+            {% for d in departments %}
+            <option value="{{ d.id }}" {% if d.id|stringformat:"s" == current_dept %}selected{% endif %}>{{ d.name }}</option>
+            {% endfor %}
+          </select>
+          <select name="sort" id="sort">
+            <option value="joined" {% if sort != 'name' and sort != 'marks' %}selected{% endif %}>Newest</option>
+            <option value="name" {% if sort == 'name' %}selected{% endif %}>Name</option>
+            <option value="marks" {% if sort == 'marks' %}selected{% endif %}>Top marks</option>
+          </select>
+          <button type="submit" class="btn small">Apply</button>
+        </form>
+      </div>
+    </header>
+
+    <section class="grid" id="studentGrid">
+      {% for s in students %}
+  <article class="card" data-name="{{ s.name|lower }}" data-email="{{ s.email|lower }}" data-bio="{{ s.bio|default_if_none:''|escape }}" data-insta="{{ s.instagram|default_if_none:''|lower|escape }}" data-website="{{ s.website|default_if_none:''|escape }}" data-dept-id="{{ s.department.id }}" data-joined="{{ s.joined_date }}" tabindex="0" role="button" aria-pressed="false" data-id="{{ s.id }}">
+        <div class="card-banner">
+          <img src="{% static 'student/img/institute_logo.png' %}" alt="Institute logo" class="banner-logo"/>
+          <span class="banner-text">National Institute of Engineering</span>
+        </div>
+        <div class="card-media">
+          {% if s.photo %}
+          <img src="{{ s.photo.url }}" alt="{{ s.name }} photo">
+          {% else %}
+          <div class="avatar-fallback">{{ s.name|slice:":1" }}</div>
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <h2 class="student-name">{{ s.name }}</h2>
+            <div class="badge">{{ s.department.name }}</div>
+          </div>
+          <div class="meta email">{{ s.email }}</div>
+          <div class="meta stats">
+            <div class="marks">Marks: <strong>{{ s.marks }}</strong></div>
+            <div class="joined">Joined: {{ s.joined_date }}</div>
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <p>No students found.</p>
+      {% endfor %}
+    </section>
+
+    <!-- Details modal -->
+    <div id="detailsModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-card" role="document">
+        <button class="modal-close" aria-label="Close details" data-close="true">×</button>
+        <div class="modal-media"></div>
+        <div class="modal-body">
+          <h3 class="modal-name"></h3>
+          <div class="modal-dept"></div>
+          <div class="modal-email"></div>
+          <div class="modal-marks"></div>
+          <div class="modal-joined"></div>
+          <hr />
+          <div class="modal-bio"></div>
+          <div class="modal-social">
+            <a class="modal-insta" target="_blank" rel="noopener noreferrer"></a>
+            <a class="modal-website" target="_blank" rel="noopener noreferrer"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script src="{% static 'student/js/animations.js' %}"></script>
+</body>
+</html>

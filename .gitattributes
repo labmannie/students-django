@@ -1,0 +1,5 @@
+* text=auto
+*.py diff=python
+*.pyx diff=python
+*.pxd diff=python
+*.pxi diff=python
