@@ -1,6 +1,6 @@
 # Student Dashboard — National Institute of Engineering
 
-![Institute Logo](student/static/student/img/institute_logo.png)
+![Institute Logo](student_dashboard/student/static/student/img/institute_logo.png)
 
 A polished, dark-mode student dashboard built with Django. It displays students, their departments, photos and additional profile details in a modern liquid-glass UI with smooth animations, modal detail views, and flexible search/filter/sort behaviour.
 
